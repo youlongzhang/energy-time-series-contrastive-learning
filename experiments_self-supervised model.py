@@ -10,10 +10,6 @@ import matplotlib.pyplot as plt
 from Contrastive_Learning.Contrastive_loss import contrastive_loss
 from Contrastive_Learning.ENERGYNET import create_encoder, create_projection_head
 
-# 假设数据
-X = np.random.randn(100, 1440)  # 100个样本，每个样本1440个时间步长
-y_true = np.random.randint(0, 3, size=100)  # 真实标签（3个类）
-
 
 # 自编码器模型 (Autoencoder)
 def create_autoencoder(input_shape):
