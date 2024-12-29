@@ -12,9 +12,6 @@ from Data_Augmentation.self_attention_augmentation import create_transformer_aug
 from Contrastive_Learning.Contrastive_loss import contrastive_loss
 from Contrastive_Learning.ENERGYNET import create_encoder, create_projection_head
 
-# 模拟数据（假设原始数据）
-X = np.random.randn(100, 1440)
-y_true = np.random.randint(0, 3, size=100)  #
 
 
 # 数据增强方法：噪声添加
