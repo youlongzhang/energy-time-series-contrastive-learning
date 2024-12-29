@@ -13,7 +13,6 @@ num_heads = 4  # Transformer中的多头注意力头数
 ff_dim = 128  # Transformer中的前馈神经网络维度
 num_blocks = 2  # Transformer块数
 temperature = 0.1  # 对比学习的温度参数
-dtw_weight = 0.5  # DTW损失的权重
 epochs = 50  # 训练的轮数
 batch_size = 128  # 每批次样本数
 input_shape = (1440, 1)  # 输入形状
