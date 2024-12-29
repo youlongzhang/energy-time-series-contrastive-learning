@@ -12,6 +12,10 @@ class TransformerBlock(tf.keras.layers.Layer):
         self.layernorm2 = LayerNormalization(epsilon=1e-6)
         self.dropout1 = Dropout(rate)
         self.dropout2 = Dropout(rate)
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.ff_dim = ff_dim
+        self.rate = rate
 
     def call(self, inputs, training):
         attn_output = self.att(inputs, inputs)
@@ -20,6 +24,19 @@ class TransformerBlock(tf.keras.layers.Layer):
         ffn_output = self.ffn(out1)
         ffn_output = self.dropout2(ffn_output, training=training)
         return self.layernorm2(out1 + ffn_output)
+
+    def get_config(self):
+        config = super(TransformerBlock, self).get_config()
+        config.update({
+            'embed_dim': self.embed_dim,
+            'num_heads': self.num_heads,
+            'ff_dim': self.ff_dim,
+            'rate': self.rate,
+        })
+        return config
+
+# 确保在类定义之后添加以下代码来注册自定义层，以便能够序列化
+tf.keras.utils.get_custom_objects().update({'TransformerBlock': TransformerBlock})
 
 # 自动增强层
 class AutoAugmentLayer(tf.keras.layers.Layer):
@@ -39,6 +56,9 @@ class AutoAugmentLayer(tf.keras.layers.Layer):
             'rate': self.rate,
         })
         return config
+
+    # 确保在类定义之后添加以下代码来注册自定义层，以便能够序列化
+tf.keras.utils.get_custom_objects().update({'AutoAugmentLayer': AutoAugmentLayer})
 
 # 端到端的增强模型
 def create_transformer_augmented_model(input_shape, embed_dim, num_heads, ff_dim, num_blocks):
