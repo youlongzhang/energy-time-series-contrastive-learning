@@ -39,8 +39,7 @@ checkpoint_augmentation = ModelCheckpoint('best_augmentation_model.h5',
                                           save_weights_only=True,
                                           verbose=1)
 
-# 假设X_train是你的训练数据
-X_train = np.random.randn(10000, 1440, 1)  # 假数据，实际数据需要替换
+
 
 # 创建列表用于存储损失
 losses = []
